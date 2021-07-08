@@ -30,6 +30,30 @@ img1Div.style.border = 'none';
 img2Div.style.border = 'none';
 img3Div.style.border = 'none';
 
+function ImgObj(name, path,clicked,shown) {// the cionstructor
+  this.name = name;
+  this.path = path;
+  this.clicked = clicked;
+  this.shown = shown;
+  ImgObj.allImg.push(this);
+}
+ImgObj.allImg = [];
+
+init();
+function init(){
+  temporary = JSON.parse(localStorage.getItem('ALL')) || [];
+  if (temporary.length > 0) {
+    ImgObj.allImg.length = 0;
+    for ( let i of temporary){
+      new ImgObj(i.name,i.path,i.clicked,i.shown);
+    }
+  }else{
+    for (let i = 0; i < imgArr.length; i++) {
+      new ImgObj(imgArr[i].split('.')[0], imgArr[i],0,0);
+    }
+
+  }
+}
 
 function begin() { // main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////
 
@@ -70,14 +94,6 @@ function begin() { // main body ///////////////////main body ///////////////////
   let max = imgArr.length - 1;
 
   /////////////////////////////////////////////////////////////////////////
-  function ImgObj(name, path,clicked,shown) {// the cionstructor
-    this.name = name;
-    this.path = path;
-    this.clicked = clicked;
-    this.shown = shown;
-    ImgObj.allImg.push(this);
-  }
-  ImgObj.allImg = [];
 
   /////////////////////////////////////////////////////////////////////////
   function getRand(min, max) { // returns an array containing 3 random unique numbers, and updates an array holding the numbers used in the last or mosr recent iteration (still thinking what should I do with it) //
@@ -202,19 +218,26 @@ let result = document.getElementById('result'); // just to make the div disappea
 result.style.display = 'none';
 document.getElementById('viewRes').addEventListener('click',view);
 function view() { // view results in a list and as a chart
-
   temporary = JSON.parse(localStorage.getItem('ALL'));
   if (!temporary) {
     temporary = emptyArr.slice(0);
+  }else{
+    for (let i = 0; i < ALLliteral.length; i++) {
+      temporary[i].clicked += ALLliteral[i].clicked;
+      temporary[i].shown += ALLliteral[i].shown;
+    }
+    localStorage.setItem('ALL', JSON.stringify(temporary));
+    ImgObj.allImg.length = 0;
+    for ( let i of temporary){
+      new ImgObj(i.name,i.path,i.clicked,i.shown);
+    }
   }
-  for (let i = 0; i < ALLliteral.length; i++) {
-    temporary[i].clicked += ALLliteral[i].clicked;
-    temporary[i].shown += ALLliteral[i].shown;
-  }
-  localStorage.setItem('ALL', JSON.stringify(temporary));
 
+  // console.log('IMGOBJ');
+  // console.log(ImgObj.allImg)
+  // console.log('Temp');
+  // console.log(ALLliteral);
 
-  console.table([temporary]);
   ALL = temporary.slice(0);
 
 

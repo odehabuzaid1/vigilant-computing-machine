@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+    <title>BusMall</title>
+</head>
+<body>
+
+    <header>
+        <section id="Logo">
+            <img src="./img/logo.png" alt="">
+            <h2>BusMall</h2>
+        </section>
+
+        <nav>
+            <div>
+                <img src="https://img.icons8.com/ios-glyphs/30/4a90e2/about.png"/>
+                <a href="#">About us</a>
+            </div>
+            <div>
+                <img src="https://img.icons8.com/ios-glyphs/30/4a90e2/myspace.png"/>
+                <a href="#">Connect</a>
+            </div>
+            <div>
+                <img src="https://img.icons8.com/ios-glyphs/30/4a90e2/idea.png"/>
+                <a href="#">Collaborate</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="limitGetter">
+            <div id="rounds">
+                <section id="small">
+                    <label for="number">Enter the number of rounds</label>
+                    <input type="number" name="" id="number" placeholder="5">
+                </section>
+                <p>
+                   <strong id="leftRnds">25</strong> rounds left
+                </p>
+            </div>
+            
+            <section id="buttons">
+                <button id="begin" onclick="begin()">Begin</button>
+                <button id="resetAll" onclick="resetAll()">Reset</button>
+            </section>
+        
+        </div>
+        
+        <section id="imgSection">
+
+            <div id="img1">
+                
+            </div>
+            <div id="img2">
+                
+            </div>
+            <div id="img3">
+                
+            </div>
+
+            <p id="message">Catalogue will show up once you click "Begin"</p>
+
+        </section>
+
+        <section id="results">
+            <button disabled id="viewRes" onclick="view()">View Results</button>
+        </section>
+        
+        </div> 
+
+        <div id="result">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <section id="clear">
+            <button id="clearData" onclick="clearData()"><img src="https://img.icons8.com/color/48/000000/delete-forever.png"/> <p>clear all data</p> </button>
+        </section>
+
+        <article id="about">
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, aliquid vel eaque sit animi non necessitatibus harum architecto soluta fugiat? Repellendus, obcaecati. Dolores consequatur ullam veniam enim, quidem perferendis voluptatem!
+                Eum, sit architecto. Quo minus repellendus nesciunt placeat! Molestiae illum facere mollitia quae, distinctio possimus eius repudiandae reiciendis dolor est eum minima ducimus, laborum asperiores quidem quos numquam rerum quo.
+                Sapiente vel harum veritatis doloribus quas commodi fuga assumenda! Eveniet eligendi aperiam ea beatae dolore sunt reprehenderit incidunt expedita sequi ipsum atque, dignissimos saepe dolorum deserunt explicabo voluptatem accusamus quis?
+                Fuga, dolore perspiciatis at repudiandae perferendis deleniti, ea unde culpa accusamus totam nihil vero saepe vitae non facilis dicta quisquam ad consectetur quo maiores nostrum modi. Sapiente quod tenetur labore?
+                Aut quo dolor soluta debitis eveniet consequuntur obcaecati quis commodi nisi odio quisquam tempora nemo at rerum quam, reprehenderit mollitia ea minima, dolorum, nulla aperiam facere. In nobis eos ad?
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        <div>
+            <img src="https://img.icons8.com/ios-glyphs/30/4a90e2/linkedin.png"/>
+            <img src="https://img.icons8.com/ios-glyphs/30/4a90e2/instagram-new.png"/>
+            <img src="https://img.icons8.com/ios-glyphs/30/4a90e2/pinterest.png"/>
+        </div>
+        <p>All rights reserved &copy; 2021 Hamza Ahmad</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <script src="script/app.js"></script>
+    
+</body>
+</html>

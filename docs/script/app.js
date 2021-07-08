@@ -173,18 +173,26 @@ function init(){
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
     let pth = e.target.src.split('/')[4];
+    console.log(pth)
 
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
       if (pth === pos1.src.split('/')[4] && ImgObj.allImg[i].path === pos1.src.split('/')[4]) {
         console.log(pos1.src)
+        console.log(pth)
         console.log(pos1.src.split('/')[4])
         ImgObj.allImg[i].clicked++;
         break;
       } else if (pth === pos2.src.split('/')[4] && ImgObj.allImg[i].path === pos2.src.split('/')[4]) {
+        console.log(pos1.src)
+        console.log(pth)
+        console.log(pos1.src.split('/')[4])
         ImgObj.allImg[i].clicked++;
         break;
       } else if (pth === pos3.src.split('/')[4] && ImgObj.allImg[i].path === pos3.src.split('/')[4]) {
+        console.log(pos1.src)
+        console.log(pth)
+        console.log(pos1.src.split('/')[4])
         ImgObj.allImg[i].clicked++;
         break;
       }

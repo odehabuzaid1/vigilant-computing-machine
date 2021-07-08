@@ -14,7 +14,7 @@ let storedArr = [];
 let ALLliteral = [];
 let ALL = [];
 let all = [];
-let limit = 5;
+let limit = 25;
 let roundlimit = document.getElementById('number');
 let lastIter = []; ///////////////////////////////////////////////// keeping track of lastIter
 let arrOfRand = [];
@@ -63,7 +63,7 @@ function begin() { // main body ///////////////////main body ///////////////////
   message.style.display = 'none';
 
   if (Number(roundlimit.value) == 0) {
-    limit = 5;
+    limit = 25;
   } else {
     limit = Number(roundlimit.value);
   }
@@ -181,22 +181,22 @@ function begin() { // main body ///////////////////main body ///////////////////
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
     let pth = e.target.src.split('/')[5];
-    console.log(['checkFunctionLogs']);
-    console.log(pth);
-    console.log(e.target.src);
-    console.log(ImgObj.allImg);
+    // console.log(['checkFunctionLogs']);
+    // console.log(pth);
+    // console.log(e.target.src);
+    // console.log(ImgObj.allImg);
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
       if (pth === pos1.src.split('/')[5] && ImgObj.allImg[i].path === pos1.src.split('/')[5]) {
-        console.log('here1');
+        // console.log('here1');
         ImgObj.allImg[i].clicked++;
         break;
       } else if (pth === pos2.src.split('/')[5] && ImgObj.allImg[i].path === pos2.src.split('/')[5]) {
-        console.log('here2');
+        // console.log('here2');
         ImgObj.allImg[i].clicked++;
         break;
       } else if (pth === pos3.src.split('/')[5] && ImgObj.allImg[i].path === pos3.src.split('/')[5]) {
-        console.log('here3');
+        // console.log('here3');
         ImgObj.allImg[i].clicked++;
         break;
       }

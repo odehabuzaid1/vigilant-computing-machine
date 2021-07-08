@@ -136,6 +136,10 @@ function begin() { // main body ///////////////////main body ///////////////////
     pos2.setAttribute('src', `./img/${ImgObj.allImg[rand2].path}`);
     pos3.setAttribute('src', `./img/${ImgObj.allImg[rand3].path}`);
 
+    pos1.setAttribute('id', 'pos1');
+    pos2.setAttribute('id', 'pos2');
+    pos3.setAttribute('id', 'pos3');
+
     for(let i = 0; i < ImgObj.allImg.length; i++ ) {
       switch(ImgObj.allImg[i].path) {
       case pos1.src.split('/')[5]:
@@ -179,31 +183,37 @@ function begin() { // main body ///////////////////main body ///////////////////
 
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
-    let pth = e.target.src.split('/')[5];
-    // console.log(['checkFunctionLogs']);
-    // console.log(pth);
-    // console.log(e.target.src);
-    // console.log(ImgObj.allImg);
-    for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
-      if (pth === pos1.src.split('/')[5] && ImgObj.allImg[i].path === pos1.src.split('/')[5]) {
-        // console.log('here1');
-        ImgObj.allImg[i].clicked++;
-        break;
-      } else if (pth === pos2.src.split('/')[5] && ImgObj.allImg[i].path === pos2.src.split('/')[5]) {
-        // console.log('here2');
-        ImgObj.allImg[i].clicked++;
-        break;
-      } else if (pth === pos3.src.split('/')[5] && ImgObj.allImg[i].path === pos3.src.split('/')[5]) {
-        // console.log('here3');
-        ImgObj.allImg[i].clicked++;
-        break;
+
+    if (e.target.id === 'pos1' || e.target.id === 'pos2' || e.target.id === 'pos3'){
+      let pth = e.target.src.split('/')[5];
+      // console.log(['checkFunctionLogs']);
+      // console.log(pth);
+      // console.log(e.target.src);
+      // console.log(ImgObj.allImg);
+      for (let i = 0; i < ImgObj.allImg.length; i++ ) {
+
+        if (pth === pos1.src.split('/')[5] && ImgObj.allImg[i].path === pos1.src.split('/')[5]) {
+          // console.log('here1');
+          ImgObj.allImg[i].clicked++;
+          break;
+        } else if (pth === pos2.src.split('/')[5] && ImgObj.allImg[i].path === pos2.src.split('/')[5]) {
+          // console.log('here2');
+          ImgObj.allImg[i].clicked++;
+          break;
+        } else if (pth === pos3.src.split('/')[5] && ImgObj.allImg[i].path === pos3.src.split('/')[5]) {
+          // console.log('here3');
+          ImgObj.allImg[i].clicked++;
+          break;
+        }
+        leftRnds.textContent = Number(leftRnds.textContent) - 1;
+        localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
+        render();
       }
+
+
     }
 
-    leftRnds.textContent = Number(leftRnds.textContent) - 1;
-    localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
-    render();
   }
 } // end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////
 

@@ -53,6 +53,7 @@ function init(){
     }
 
   }
+  console.log(ImgObj.allImg);
 }
 
 function begin() { // main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////
@@ -123,9 +124,7 @@ function begin() { // main body ///////////////////main body ///////////////////
   }
 
 
-  for (let i = 0; i < imgArr.length; i++) {
-    new ImgObj(imgArr[i].split('.')[0], imgArr[i],0,0);
-  }
+
 
   render();
   /////////////////////////////////////////////////////////////////////////
@@ -201,7 +200,7 @@ function begin() { // main body ///////////////////main body ///////////////////
         break;
       }
     }
-    console.log(ImgObj.allImg);
+
     leftRnds.textContent = Number(leftRnds.textContent) - 1;
     localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
     render();
@@ -219,21 +218,8 @@ let result = document.getElementById('result'); // just to make the div disappea
 result.style.display = 'none';
 document.getElementById('viewRes').addEventListener('click',view);
 function view() { // view results in a list and as a chart
-  temporary = JSON.parse(localStorage.getItem('ALL'));
-  if (!temporary) {
-    temporary = emptyArr.slice(0);
-  }else{
-    for (let i = 0; i < ALLliteral.length; i++) {
-      temporary[i].clicked += ALLliteral[i].clicked;
-      temporary[i].shown += ALLliteral[i].shown;
-    }
-    localStorage.setItem('ALL', JSON.stringify(temporary));
-    ImgObj.allImg.length = 0;
-    for ( let i of temporary){
-      new ImgObj(i.name,i.path,i.clicked,i.shown);
-    }
-  }
-
+  temporary = JSON.parse(localStorage.getItem('ALL')) || [];
+  if (!temporary) { temporary = emptyArr.slice(0);}
   // console.log('IMGOBJ');
   // console.log(ImgObj.allImg)
   // console.log('Temp');
@@ -303,11 +289,11 @@ function view() { // view results in a list and as a chart
       color: 'rgb(36, 96, 167)',
     }
   });
-
-  for (let i = 0; i < ALL.length; i++) { // create li elements and add the necessary values
+  ul.innerHTML = '';
+  for (let i = 0; i < ImgObj.allImg.length; i++) { // create li elements and add the necessary values
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.textContent = `${ALL[i].name} had ${ALL[i].clicked} votes, and was seen ${ALL[i].shown} times.`;
+    li.textContent = `${ImgObj.allImg[i].name} had ${ImgObj.allImg[i].clicked} votes, and was seen ${ImgObj.allImg[i].shown} times.`;
   }
   clearSection.style.display = 'flex';
   ///////////////////////////////////////////////////////////////////////////////////////////////

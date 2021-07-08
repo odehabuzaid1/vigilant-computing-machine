@@ -203,6 +203,7 @@ function begin() { // main body ///////////////////main body ///////////////////
     }
     console.log(ImgObj.allImg);
     leftRnds.textContent = Number(leftRnds.textContent) - 1;
+    localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
     render();
   }
 } // end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////

@@ -125,15 +125,15 @@ function begin() { // main body ///////////////////main body ///////////////////
       switch(ImgObj.allImg[i].path) {
       case pos1.src.split('/')[5]:
         ImgObj.allImg[i].shown++;
-        if (iteration == limit - 1) ImgObj.allImg[i].shown--;
+        if (iteration === limit - 1) ImgObj.allImg[i].shown--;
         break;
       case pos2.src.split('/')[5]:
         ImgObj.allImg[i].shown++;
-        if (iteration == limit -1 ) ImgObj.allImg[i].shown--;
+        if (iteration === limit -1 ) ImgObj.allImg[i].shown--;
         break;
       case pos3.src.split('/')[5]:
         ImgObj.allImg[i].shown++;
-        if (iteration == limit -1) ImgObj.allImg[i].shown--;
+        if (iteration === limit -1) ImgObj.allImg[i].shown--;
         break;
       }
     }
@@ -165,22 +165,27 @@ function begin() { // main body ///////////////////main body ///////////////////
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
     let pth = e.target.src.split('/')[5];
+    console.log(['checkFunctionLogs']);
     console.log(pth);
     console.log(e.target.src);
-
+    console.log(ImgObj.allImg);
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
-      if (pth == pos1.src.split('/')[5] && ImgObj.allImg[i].path == pos1.src.split('/')[5]) {
+      if (pth === pos1.src.split('/')[5] && ImgObj.allImg[i].path === pos1.src.split('/')[5]) {
+        console.log('here1');
         ImgObj.allImg[i].clicked++;
         break;
-      } else if (pth == pos2.src.split('/')[5] && ImgObj.allImg[i].path == pos2.src.split('/')[5]) {
+      } else if (pth === pos2.src.split('/')[5] && ImgObj.allImg[i].path === pos2.src.split('/')[5]) {
+        console.log('here2');
         ImgObj.allImg[i].clicked++;
         break;
-      } else if (pth == pos3.src.split('/')[5] && ImgObj.allImg[i].path == pos3.src.split('/')[5]) {
+      } else if (pth === pos3.src.split('/')[5] && ImgObj.allImg[i].path === pos3.src.split('/')[5]) {
+        console.log('here3');
         ImgObj.allImg[i].clicked++;
         break;
       }
     }
+    console.log(ImgObj.allImg);
     leftRnds.textContent = Number(leftRnds.textContent) - 1;
     render();
   }

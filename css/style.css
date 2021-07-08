@@ -221,6 +221,11 @@ ul {
   width: 8rem;
 
 }
+
+#viewRes{
+  height: 2rem;
+  width: 8rem;
+}
 #small {
   /* outline: red solid 2px;  */
   display: flex;

@@ -1,5 +1,6 @@
 'use strict';
-
+console.groupCollapsed('Logs')
+//#region 
 let imgArr = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 
 let allIndices = []; // holds all the indices, it will be used as a reference for other two arrays or maybe one in order to remove the indices selected before
@@ -29,7 +30,14 @@ let img3Div = document.getElementById('img3');
 img1Div.style.border = 'none';
 img2Div.style.border = 'none';
 img3Div.style.border = 'none';
-
+function ImgObj(name, path,clicked,shown) {// the cionstructor
+  this.name = name;
+  this.path = path;
+  this.clicked = clicked;
+  this.shown = shown;
+  ImgObj.allImg.push(this);
+}
+ImgObj.allImg = [];
 
 function begin() { // main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////////main body ///////////////
 
@@ -39,7 +47,7 @@ function begin() { // main body ///////////////////main body ///////////////////
   message.style.display = 'none';
 
   if (Number(roundlimit.value) == 0) {
-    limit = 25;
+    limit = 5;
   } else {
     limit = Number(roundlimit.value);
   }
@@ -70,14 +78,6 @@ function begin() { // main body ///////////////////main body ///////////////////
   let max = imgArr.length - 1;
 
   /////////////////////////////////////////////////////////////////////////
-  function ImgObj(name, path,clicked,shown) {// the cionstructor
-    this.name = name;
-    this.path = path;
-    this.clicked = clicked;
-    this.shown = shown;
-    ImgObj.allImg.push(this);
-  }
-  ImgObj.allImg = [];
 
   /////////////////////////////////////////////////////////////////////////
   function getRand(min, max) { // returns an array containing 3 random unique numbers, and updates an array holding the numbers used in the last or mosr recent iteration (still thinking what should I do with it) //
@@ -106,11 +106,21 @@ function begin() { // main body ///////////////////main body ///////////////////
     return arrOfRand;
   }
 
-
-  for (let i = 0; i < imgArr.length; i++) {
-    new ImgObj(imgArr[i].split('.')[0], imgArr[i],0,0);
+init()
+function init(){
+  temporary = JSON.parse(localStorage.getItem('ALL')) || [];
+  if (temporary.length > 0) {
+    ImgObj.allImg.length = 0
+    for ( let i of temporary){
+          new ImgObj(i.name,i.path,i.clicked,i.shown)
+    }
+  }else{
+    for (let i = 0; i < imgArr.length; i++) {
+      new ImgObj(imgArr[i].split('.')[0], imgArr[i],0,0);
+    }
+   
   }
-
+}
   render();
   /////////////////////////////////////////////////////////////////////////
   function render() {
@@ -159,9 +169,7 @@ function begin() { // main body ///////////////////main body ///////////////////
       return;
     }
   }
-
   imgSection.addEventListener('click', check);
-
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
     let pth = e.target.src.split('/')[4];
@@ -180,35 +188,37 @@ function begin() { // main body ///////////////////main body ///////////////////
       }
     }
     leftRnds.textContent = Number(leftRnds.textContent) - 1;
+    localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
     render();
   }
 } // end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////
 
-/////////////////////////////////////////////////////////////////////////
-function resetAll() { // reload the page
-
-  location.reload();
-}
-/////////////////////////////////////////////////////////////////////////
-
 let result = document.getElementById('result'); // just to make the div disappear before it gets shown not to ruin paddings and margins
 result.style.display = 'none';
 document.getElementById('viewRes').addEventListener('click',view);
-
-function view() { // view results in a list and as a chart
+//#endregion
+function view() { 
 
   temporary = JSON.parse(localStorage.getItem('ALL'));
   if (!temporary) {
     temporary = emptyArr.slice(0);
+  }else{
+    for (let i = 0; i < ALLliteral.length; i++) {
+      temporary[i].clicked += ALLliteral[i].clicked;
+      temporary[i].shown += ALLliteral[i].shown;
+    }
+    localStorage.setItem('ALL', JSON.stringify(temporary));
+    ImgObj.allImg.length = 0
+    for ( let i of temporary){
+          new ImgObj(i.name,i.path,i.clicked,i.shown)
+    }
   }
-  for (let i = 0; i < ALLliteral.length; i++) {
-    temporary[i].clicked += ALLliteral[i].clicked;
-    temporary[i].shown += ALLliteral[i].shown;
-  }
-  localStorage.setItem('ALL', JSON.stringify(temporary));
 
+  // console.log('IMGOBJ');
+  // console.log(ImgObj.allImg)
+  // console.log('Temp');
+  // console.log(ALLliteral);
 
-  console.table([temporary]);
   ALL = temporary.slice(0);
 
 
@@ -221,7 +231,8 @@ function view() { // view results in a list and as a chart
   let votedArr = ALL.slice(0);
   namesArr = namesArr.map(item => item.name);
   vieweddArr = vieweddArr.map(item => item.shown);
-  votedArr = votedArr.map(item => item.clicked); // all good we have all the arrays needed, these arrays hold the values for a single key per each object
+  votedArr = votedArr.map(item => item.clicked); 
+  // all good we have all the arrays needed, these arrays hold the values for a single key per each object
 
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
@@ -274,11 +285,12 @@ function view() { // view results in a list and as a chart
     }
   });
 
-  for (let i = 0; i < ALL.length; i++) { // create li elements and add the necessary values
+  for (let i = 0; i < ImgObj.allImg.length; i++) { // create li elements and add the necessary values
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.textContent = `${ALL[i].name} had ${ALL[i].clicked} votes, and was seen ${ALL[i].shown} times.`;
+    li.textContent = `${ImgObj.allImg[i].name} had ${ImgObj.allImg[i].clicked} votes, and was seen ${ImgObj.allImg[i].shown} times.`;
   }
+  console.log(ImgObj.allImg);
   clearSection.style.display = 'flex';
   ///////////////////////////////////////////////////////////////////////////////////////////////
   modifyShowResultsButton(resButton);
@@ -291,8 +303,12 @@ function modifyShowResultsButton(resButton) { // just to change the style and th
   resButton.textContent = 'Results';
   resButton.style.border = 'none';
 }
-
 function clearData() {
   localStorage.clear();
   resetAll();
 }
+/////////////////////////////////////////////////////////////////////////
+function resetAll() { // reload the page
+  location.reload();
+}
+/////////////////////////////////////////////////////////////////////////

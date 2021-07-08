@@ -175,25 +175,15 @@ function init(){
     let pth = e.target.src.split('/')[4];
     console.log(pth)
     console.log(e.target.src)
-
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
-      if (pth === pos1.src.split('/')[4] && ImgObj.allImg[i].path === pos1.src.split('/')[4]) {
-        console.log(pos1.src)
-        console.log(pth)
-        console.log(pos1.src.split('/')[4])
+      if (pth == pos1.src.split('/')[4] && ImgObj.allImg[i].path == pos1.src.split('/')[4]) {
         ImgObj.allImg[i].clicked++;
         break;
-      } else if (pth === pos2.src.split('/')[4] && ImgObj.allImg[i].path === pos2.src.split('/')[4]) {
-        console.log(pos1.src)
-        console.log(pth)
-        console.log(pos1.src.split('/')[4])
+      } else if (pth == pos2.src.split('/')[4] && ImgObj.allImg[i].path == pos2.src.split('/')[4]) {
         ImgObj.allImg[i].clicked++;
         break;
-      } else if (pth === pos3.src.split('/')[4] && ImgObj.allImg[i].path === pos3.src.split('/')[4]) {
-        console.log(pos1.src)
-        console.log(pth)
-        console.log(pos1.src.split('/')[4])
+      } else if (pth == pos3.src.split('/')[4] && ImgObj.allImg[i].path == pos3.src.split('/')[4]) {
         ImgObj.allImg[i].clicked++;
         break;
       }

@@ -39,7 +39,7 @@ function begin() { // main body ///////////////////main body ///////////////////
   message.style.display = 'none';
 
   if (Number(roundlimit.value) == 0) {
-    limit = 25;
+    limit = 5;
   } else {
     limit = Number(roundlimit.value);
   }
@@ -193,6 +193,7 @@ function resetAll() { // reload the page
 
 let result = document.getElementById('result'); // just to make the div disappear before it gets shown not to ruin paddings and margins
 result.style.display = 'none';
+document.getElementById('viewRes').addEventListener('click',view);
 function view() { // view results in a list and as a chart
 
   temporary = JSON.parse(localStorage.getItem('ALL'));

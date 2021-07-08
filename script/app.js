@@ -206,11 +206,11 @@ function begin() { // main body ///////////////////main body ///////////////////
           ImgObj.allImg[i].clicked++;
           break;
         }
-        leftRnds.textContent = Number(leftRnds.textContent) - 1;
-        localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
-        render();
-      }
 
+      }
+      leftRnds.textContent = Number(leftRnds.textContent) - 1;
+      localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
+      render();
 
     }
 

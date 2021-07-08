@@ -130,10 +130,6 @@ function init(){
     pos1.setAttribute('src', `./img/${ImgObj.allImg[rand1].path}`);
     pos2.setAttribute('src', `./img/${ImgObj.allImg[rand2].path}`);
     pos3.setAttribute('src', `./img/${ImgObj.allImg[rand3].path}`);
-    
-    pos1.setAttribute('id', `pos1`);
-    pos2.setAttribute('id', `pos2`);
-    pos3.setAttribute('id', `pos3`);
 
     for(let i = 0; i < ImgObj.allImg.length; i++ ) {
       switch(ImgObj.allImg[i].path) {
@@ -176,53 +172,37 @@ function init(){
   imgSection.addEventListener('click', check);
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
-    let pth = e.target.src.split('/')[4]
-    console.log(e.target.src)
+    let pth = e.target.src.split('/')[4];
     console.log(pth)
-   
-    // for (let i = 0; i < ImgObj.allImg.length; i++ ){
-    //   switch (ImgObj.allImg[i].path) {
-    //     case value:
-          
-    //       break;
-      
-    //     default:
-    //       break;
-    //   }
-          
-    // }
+    console.log(e.target.src)
+
+    for (let i = 0; i < ImgObj.allImg.length; i++ ) {
+
+      if (pth === pos1.src.split('/')[4] && ImgObj.allImg[i].path === pos1.src.split('/')[4]) {
+        console.log(pos1.src)
+        console.log(pth)
+        console.log(pos1.src.split('/')[4])
+        ImgObj.allImg[i].clicked++;
+        break;
+      } else if (pth === pos2.src.split('/')[4] && ImgObj.allImg[i].path === pos2.src.split('/')[4]) {
+        console.log(pos1.src)
+        console.log(pth)
+        console.log(pos1.src.split('/')[4])
+        ImgObj.allImg[i].clicked++;
+        break;
+      } else if (pth === pos3.src.split('/')[4] && ImgObj.allImg[i].path === pos3.src.split('/')[4]) {
+        console.log(pos1.src)
+        console.log(pth)
+        console.log(pos1.src.split('/')[4])
+        ImgObj.allImg[i].clicked++;
+        break;
+      }
+    }
     leftRnds.textContent = Number(leftRnds.textContent) - 1;
     localStorage.setItem('ALL', JSON.stringify(ImgObj.allImg));
     render();
   }
- 
-
-
-    // for (let i = 0; i < ImgObj.allImg.length; i++ ) {
-
-    //   if (pth === pos1.src.split('/')[4] && ImgObj.allImg[i].path === pos1.src.split('/')[4]) {
-    //     console.log(pos1.src)
-    //     console.log(pth)
-    //     console.log(pos1.src.split('/')[4])
-    //     ImgObj.allImg[i].clicked++;
-    //     break;
-    //   } else if (pth === pos2.src.split('/')[4] && ImgObj.allImg[i].path === pos2.src.split('/')[4]) {
-    //     console.log(pos1.src)
-    //     console.log(pth)
-    //     console.log(pos1.src.split('/')[4])
-    //     ImgObj.allImg[i].clicked++;
-    //     break;
-    //   } else if (pth === pos3.src.split('/')[4] && ImgObj.allImg[i].path === pos3.src.split('/')[4]) {
-    //     console.log(pos1.src)
-    //     console.log(pth)
-    //     console.log(pos1.src.split('/')[4])
-    //     ImgObj.allImg[i].clicked++;
-    //     break;
-    //   }
-    // }
-  
- 
-// end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////
+} // end of main body////////////// end of main body////////////// end of main body////////////// end of main body////////////// end of main body//////////////////
 
 let result = document.getElementById('result'); // just to make the div disappear before it gets shown not to ruin paddings and margins
 result.style.display = 'none';

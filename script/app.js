@@ -165,6 +165,8 @@ function begin() { // main body ///////////////////main body ///////////////////
   /////////////////////////////////////////////////////////////////////////
   function check(e) { //assign paths or set src attributes for images
     let pth = e.target.src.split('/')[4];
+    console.log(pth);
+    console.log(e.target.src);
 
     for (let i = 0; i < ImgObj.allImg.length; i++ ) {
 
